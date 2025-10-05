@@ -1,0 +1,18 @@
+{
+    "input_file": "./tests/data/conversations.json",
+    "output_file": "./tests/data/messages_summary.json",
+    "output_dir": "./tests/data/conversations",
+    "combined_file": "all_test_conversations.md",
+    "prefix_with_date": true,
+    "truncate_len": 1200,
+    "format": {
+        "noisy_fields": [
+            "message.content.parts.*",
+            "message.metadata",
+            "message.recipient",
+            "message.create_time"
+        ],
+        "max_examples": 100,
+        "collapse_threshold": 1000
+    }
+}
