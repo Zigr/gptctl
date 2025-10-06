@@ -31,7 +31,7 @@ chatgpt-data-d_m _Y
 
 ### 2. **Search & indexing**
 
-* Load the JSON into tools like **Obsidian, Notion, or Logseq** to make your chats searchable alongside your notes.
+* Load the JSON into tools like **[Obsidian](https://obsidian.md/), [Notion](https://www.notion.com/), or [Logseq](https://logseq.com/), etc...** to make your chats searchable alongside your notes.
 * Use a local search/indexing tool (like `ripgrep`, `fzf`, or a small Python script) to quickly find past conversations.
 
 ### 3. **Custom parsing**
@@ -69,8 +69,12 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 4. **Manual import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or upload the conversation piece by piece, possibly in a batch and promp ChatGPT to “learn” your old context, if your account plan allows this.
 
 5. **Export** threads (individual/batch/all) in order to view personal archive in markdown format wit/without TOC.
+  
+   * **Moving Chats**: Since ChatGPT does **not** allow you to change your account email, you must create a **new** account if you want to use a different email. Unfortunately, there is no official “import” feature available, so your old chats cannot be directly transferred to the new account.
 
-6. **Explore** the schema/structure of ***conversation.json** file. Though this feature is not implemted yet.
+   * ***Organization**: This tool splits your large `conversations.json` into manageable individual JSON chat files—perfect for archiving or referencing.
+
+   * **Manual import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.** **Manual Re-import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.
 
 ---
 
@@ -85,4 +89,5 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 2. **Unzip** the file OpenAI sends, and locate the `conversations.json` inside.
 
 3. **Copy** this `conversations.json` into the **some known place**
+
 ---
