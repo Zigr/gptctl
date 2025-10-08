@@ -36,10 +36,9 @@ def show_conversation(
 
         with open(input_file, "r", encoding="utf-8") as f:
             conversations = json.load(f)
-
         for conv in conversations:
             c_title = conv.get("title") or conv.get("name") or "Untitled"
-            found = c_title == title
+            found = (c_title == title)
             if found:
                 if toc_only:
                     md_toc_lines = []
@@ -51,8 +50,10 @@ def show_conversation(
                     console.print("\n".join(md_toc_lines).strip() + "\n", markup=True)
                     break
                 else:
-                    console.print(json.dumps(conv, indent=2, ensure_ascii=False))
+                    console.print_json(data=conv)
                     break
+            else:
+                continue
 
         if not found:
             console.print(f"[red]{title} not found[/red]")
