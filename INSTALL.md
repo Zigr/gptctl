@@ -1,4 +1,4 @@
-# Installing chatgptctl
+# Install chatgptctl
 
 You can install **chatgptctl** directly from GitHub releases without PyPI using `pip` or `pipx`.
 

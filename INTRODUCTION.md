@@ -72,7 +72,7 @@ It’s also a transparency tool: you can see exactly what data is stored about y
   
    * **Moving Chats**: Since ChatGPT does **not** allow you to change your account email, you must create a **new** account if you want to use a different email. Unfortunately, there is no official “import” feature available, so your old chats cannot be directly transferred to the new account.
 
-   * ***Organization**: This tool splits your large `conversations.json` into manageable individual JSON chat files—perfect for archiving or referencing.
+   * **Organization**: This tool splits your large `conversations.json` into manageable individual JSON chat files—perfect for archiving or referencing.
 
    * **Manual import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.** **Manual Re-import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.
 
