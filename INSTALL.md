@@ -14,7 +14,6 @@ pip install https://github.com/Zigr/chatgptctl/releases/download/v${VERSION}/cha
 ## Using pipx (system-wide, isolated)
 
 ```bash
-VERSION="0.1.0"
-pipx install https://github.com/username/chatgptctl/releases/download/v${VERSION}/chatgptctl-${VERSION}-py3-none-any.whl
+pipx install git+https://github.com/Zigr/chatgptctl.git
 
 ```
