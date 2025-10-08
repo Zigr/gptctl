@@ -17,3 +17,7 @@ pip install https://github.com/Zigr/chatgptctl/releases/download/v${VERSION}/cha
 pipx install git+https://github.com/Zigr/chatgptctl.git
 
 ```
+
+### DEMO
+
+[Start Screen](./docs/chatgptctl_start.gif)
