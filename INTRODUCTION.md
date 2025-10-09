@@ -22,35 +22,112 @@ chatgpt-data-d_m _Y
 
 ```
 
+## 🚀 Why chatgptctl?
+
+When ChatGPT exports your data as a massive `conversations.json`, it’s nearly unreadable.  
+**chatgptctl** makes it practical — view, filter, and export your conversations cleanly from the terminal.
+
+Whether you want to archive old chats, analyze your prompts, or create markdown summaries — chatgptctl helps you do it with ease.
+
+---
+
+## ✨ Features
+
+- 🧭 **List** all conversations with filters and sorting  
+- 👁️ **Show** detailed messages (excluding system prompts if desired)  
+- 📦 **Export** to JSON, Markdown, or other formats  
+- ⚙️ **Configurable** input/output paths via config file or CLI  
+- 🐚 **Shell completion** support for Bash/Zsh  
+- 🧩 **Extensible** design — ready for plugins and new export formats  
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# 1. Clone or install
+pip install git+https://github.com/Zigr/chatgptctl.git
+
+# 2. Run basic commands
+chatgptctl list
+chatgptctl show 12345
+chatgptctl export markdown -t "*" --sort created --order asc
+
+## 🧰 Commands Overview
+
+Run chatgptctl --help to view all options.
+
+---
+
+## ⚙️ Configuration
+
+Default config location:
+
+```text
+~/.config/chatgptctl/config.json
+
+```
+
+Example configuration:
+
+```json
+{
+  "input": "~/Downloads/conversations.json",
+  "output_dir": "~/chatgpt_exports",
+  "format": "markdown",
+  "skip_system": true
+}
+```
+
+Override any setting using command-line flags.
+
+---
+
+## 🪄 Examples
+
+List all conversations:
+
+```bash
+chatgptctl list --sort created --order desc
+
+```
+
+Export all chats to Markdown:
+
+```bash
+chatgptctl export markdown -t "*" --output ./exports
+
+```
+
 ## Possible uses of exported personal conversation data
 
 ### 1. **Personal archive**
 
-* Keep a full local backup of your chats in case you ever want to delete them from OpenAI but still keep a copy.
-* Organize them chronologically or by project.
+- Keep a full local backup of your chats in case you ever want to delete them from OpenAI but still keep a copy.
+- Organize them chronologically or by project.
 
 ### 2. **Search & indexing**
 
-* Load the JSON into tools like **[Obsidian](https://obsidian.md/), [Notion](https://www.notion.com/), or [Logseq](https://logseq.com/), etc...** to make your chats searchable alongside your notes.
-* Use a local search/indexing tool (like `ripgrep`, `fzf`, or a small Python script) to quickly find past conversations.
+- Load the JSON into tools like **[Obsidian](https://obsidian.md/), [Notion](https://www.notion.com/), or [Logseq](https://logseq.com/), etc...** to make your chats searchable alongside your notes.
+- Use a local search/indexing tool (like `ripgrep`, `fzf`, or a small Python script) to quickly find past conversations.
 
 ### 3. **Custom parsing**
 
-* Because it’s JSON, you can parse it with **Python, Node.js, or jq** and:
+- Because it’s JSON, you can parse it with **Python, Node.js, or jq** and:
 
-  * Extract only your prompts.
-  * Extract only assistant replies.
-  * Group threads by title (if they had one).
-  * Convert to Markdown for easier reading.
+  - Extract only your prompts.
+  - Extract only assistant replies.
+  - Group threads by title (if they had one).
+  - Convert to Markdown for easier reading.
 
 ### 4. **Knowledge base**
 
-* Import useful conversations into your personal **knowledge system** (e.g., wiki, documentation, or project repo).
-* Tag them by topic (like you already do with “Zigr profile”, “Cats care”, etc.) to make them reusable.
+- Import useful conversations into your personal **knowledge system** (e.g., wiki, documentation, or project repo).
+- Tag them by topic (like you already do with “Zigr profile”, “Cats care”, etc.) to make them reusable.
 
 ### 5. **Training/reference**
 
-* Use your exported conversations as **context material** for other AI tools or even for fine-tuning / prompting local LLMs.
+- Use your exported conversations as **context material** for other AI tools or even for fine-tuning / prompting local LLMs.
 
 ### 6. **Legal / privacy use**
 
@@ -70,11 +147,11 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 
 5. **Export** threads (individual/batch/all) in order to view personal archive in markdown format wit/without TOC.
   
-   * **Moving Chats**: Since ChatGPT does **not** allow you to change your account email, you must create a **new** account if you want to use a different email. Unfortunately, there is no official “import” feature available, so your old chats cannot be directly transferred to the new account.
+   - **Moving Chats**: Since ChatGPT does **not** allow you to change your account email, you must create a **new** account if you want to use a different email. Unfortunately, there is no official “import” feature available, so your old chats cannot be directly transferred to the new account.
 
-   * **Organization**: This tool splits your large `conversations.json` into manageable individual JSON chat files—perfect for archiving or referencing.
+   - **Organization**: This tool splits your large `conversations.json` into manageable individual JSON chat files—perfect for archiving or referencing.
 
-   * **Manual import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.** **Manual Re-import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.
+   - **Manual import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.** **Manual Re-import**: With these smaller JSON files, you can open a new chat in your new ChatGPT account and paste or “upload” the conversation piece by piece, prompting ChatGPT to “learn” your old context.
 
 ---
 
@@ -91,6 +168,21 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 3. **Copy** this `conversations.json` into the **some known place**
 
 ---
+
+## 🤝 Contributing
+
+Contributions are very welcome!
+Please see [CONTRIBUTING](./CONTRIBUTING.md)
+
+## 📜 License
+
+This project is licensed under the MIT License
+© 2025 Zigr
+
+## 🌟 Support & Feedback
+
+If you find chatgptctl useful, please give it a ⭐ on GitHub — it helps others discover the project.
+For suggestions, feedback, or feature requests, visit the [Discussions](https://github.com/Zigr/chatgptctl/discussions)
 
 ## [DEMOS](./DEMOS.md)
 

@@ -39,12 +39,18 @@ def setup_logging(verbose: int = 0, debug: bool = False) -> None:
         handlers=[RichHandler(console=console, rich_tracebacks=True)],
     )
 
-app_help="""
+
+app_help = """
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
-## [INTRODUCTION](./INTRODUCTION.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](#)
+[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/chatgptctl/ci.yml)](#)
+[![Stars](https://img.shields.io/github/stars/Zigr/chatgptctl.svg?style=social&label=Star)](https://github.com/Zigr/chatgptctl/stargazers)
 
-## [INSTALLATION](./INSTALL.md)
+## [INTRODUCTION(more details)](./INTRODUCTION.md)
+
+## [INSTALLATION(examples)](./INSTALL.md)
 """
 
 app = typer.Typer(

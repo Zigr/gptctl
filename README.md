@@ -8,8 +8,9 @@ CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.
 
 **Usage**:
 
-```console
-$ chatgptctl [OPTIONS] COMMAND [ARGS]...
+```bash
+chatgptctl [OPTIONS] COMMAND [ARGS]...
+
 ```
 
 **Options**:
