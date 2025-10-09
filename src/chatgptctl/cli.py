@@ -41,6 +41,9 @@ def setup_logging(verbose: int = 0, debug: bool = False) -> None:
 
 
 app_help = """
+
+![Manage your ChatGPT exports](./docs/header.png "Manage your ChatGPT exports")
+
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)

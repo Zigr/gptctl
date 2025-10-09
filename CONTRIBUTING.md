@@ -44,23 +44,34 @@ Ready to contribute? Here's how to set up `chatgptctl` for local development.
 
 1. Download a copy of `chatgptctl` locally.
 
-2. Create and activate a conda environment for `chatgptctl`:
+2. Create and activate any virtual environment for `chatgptctl`:
 
     ```console
+    # Python pip
+    python3 -m venv venv
+
+    ```
+
+    ```console
+    # For conda
     $ conda create -n chatgptctl python=3.12
     $ conda activate chatgptctl
     ```
 
-3. Install `chatgptctl` using `poetry`:
+    etc...
+
+3. Install `chatgptctl` using your develompment tool:
 
     ```console
+    # For poetry
     $ poetry install
     ```
 
 4. Use `git` (or similar) to create a branch for local development and make your changes:
 
     ```console
-    $ git checkout -b name-of-your-bugfix-or-feature
+    git checkout -b name-of-your-bugfix-or-feature
+
     ```
 
 5. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
@@ -78,4 +89,4 @@ Before you submit a pull request, check that it meets these guidelines:
 ## Code of Conduct
 
 Please note that the `chatgptctl` project is released with a
-Code of Conduct. By contributing to this project you agree to abide by its terms.
+[Code of Conduct](./CONDUCT.md). By contributing to this project you agree to abide by its terms.
