@@ -92,6 +92,6 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 
 ---
 
-## [DEMOS(./DEMOS.md)]
+## [DEMOS](./DEMOS.md)
 
 ---
