@@ -19,15 +19,3 @@ pipx install git+https://github.com/Zigr/chatgptctl.git
 ```
 
 ---
-
-### DEMO
-
-[Install](./docs/chatgptctl_install.gif)
-
-[Start Screen](./docs/chatgptctl_start.gif)
-
-[List](./docs/chatgptctl-list.gif)
-
-[Show](./docs/chatgptctl-show.gif)
-
----

@@ -91,3 +91,7 @@ It’s also a transparency tool: you can see exactly what data is stored about y
 3. **Copy** this `conversations.json` into the **some known place**
 
 ---
+
+## [DEMOS(./DEMOS.md)]
+
+---
