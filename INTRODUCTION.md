@@ -1,6 +1,6 @@
 # chatgptctl INTRODUCTION
 
-## Possible use cases
+## Export ChatGPT Data
 
 When you use **Settings → Data Controls → Export Data**, you get a ZIP archive that contains everything linked to your account (conversations, settings, etc.). The most useful part for you is the **conversations.json** file, which holds all your chats/threads in structured form.
 
