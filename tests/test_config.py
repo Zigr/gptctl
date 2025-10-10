@@ -8,7 +8,6 @@ def test_load_config():
     # existing path
     config_path = "./tests/data/config.json"
     file_cfg = cfg.load(config_path=config_path, verbosity=2)
-    # print(f"\ncfg\n{cfg}\nfile_cfg\n{file_cfg}")
     assert isinstance(file_cfg, AppConfig)
     assert dflt_cfg != file_cfg
     # not existing path
@@ -17,9 +16,6 @@ def test_load_config():
     assert dflt_cfg is not None
     assert file_cfg is not None
     assert dflt_cfg == file_cfg
-    # print(f"Is equal: {dflt_cfg == file_cfg}")
-    # file_cfg=cfg.load(config_path="./src/chatgptctl/data/config.json", verbosity=2)
-    # print(f"\nEFFECTIVE cfg\n{file_cfg}")
 
 
 def test_resolve_config():
@@ -42,7 +38,6 @@ def test_resolve_config():
         args=args,
         verbosity=verbosity,
     )
-    # print(f"Effective Config test_resolve_config: {cfg}")
     assert isinstance(cfg, AppConfig)
 
 
@@ -60,13 +55,11 @@ def test_get_config():
     verbosity = 1
     cfg = AppConfig()
     eff_cfg = cfg.get_config(config_path=config_path, args=args, verbosity=verbosity)
-    print(f"Effective Config test_get_config: {eff_cfg}")
     assert isinstance(eff_cfg, AppConfig)
 
 
 def test_default_to_dict():
     dflt_cfg = AppConfig().load()
-    # print(f"As Dict: {dflt_cfg.to_dict() if dflt_cfg else{} }")
     assert dflt_cfg is not None
     assert isinstance(dflt_cfg, AppConfig)
     assert len(dflt_cfg.to_dict()) > 0
@@ -89,4 +82,3 @@ def test_to_dict():
     assert eff_cfg is not None
     assert isinstance(eff_cfg, AppConfig)
     assert isinstance(eff_cfg.to_dict(), dict)
-    print(f"As Dict: {eff_cfg.to_dict() if eff_cfg else {}}")

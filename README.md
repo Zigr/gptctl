@@ -1,16 +1,22 @@
 # `chatgptctl`
 
+![Manage your ChatGPT exports](./docs/header.png 'Manage your ChatGPT exports')
+
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
-## [INTRODUCTION](./INTRODUCTION.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](#)
+[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/chatgptctl/ci.yml)](#)
+[![Stars](https://img.shields.io/github/stars/Zigr/chatgptctl.svg?style=social&amp;label=Star)](https://github.com/Zigr/chatgptctl/stargazers)
 
-## [INSTALLATION](./INSTALL.md)
+## [INTRODUCTION(more details)](./INTRODUCTION.md)
+
+## [INSTALLATION(examples)](./INSTALL.md)
 
 **Usage**:
 
-```bash
-chatgptctl [OPTIONS] COMMAND [ARGS]...
-
+```console
+$ chatgptctl [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -172,7 +178,7 @@ $ chatgptctl config [OPTIONS] COMMAND [ARGS]...
 **Commands**:
 
 * `show`: Show configuration
-* `init`: Initialize/create configuration file with...
+* `init`: **Initialize/create** configuration file...
 
 ### `chatgptctl config show`
 
@@ -194,7 +200,10 @@ $ chatgptctl config show [OPTIONS] [CONFIG_PATH]
 
 ### `chatgptctl config init`
 
-Initialize/create configuration file with defaults
+**Initialize/create** configuration file with defaults in a default location.
+But you can init as many config files as you want. 
+Just pass the configuration file in ***config_file*** argument.
+NOTE: config files do not support inherited configuration values overrides.You simply create a new configuration.
 
 **Usage**:
 
