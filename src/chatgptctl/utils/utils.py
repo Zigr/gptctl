@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 import textwrap
 import time
-from typing import Any, List, Optional
+from typing import Any, Dict, List, Optional
 import json
 from rich.console import Console
 from rich.table import Table
@@ -80,7 +80,7 @@ def find_by_title(conversations: List[dict], title: str) -> Any:
     return None
 
 
-def md_anchor(title: str) -> str:
+def md_anchor(title: str,truncate_length:Optional[int] =80) -> str:
     """Sanitize text suitable for a Markdown anchor link.
 
     Args:
@@ -386,7 +386,7 @@ def conversation_to_md(
     title = conv.get("title") or conv.get("name") or "Untitled"
     created = conv.get("create_time") or conv.get("created") or ""
 
-    thread_toc: List[str] = []
+    thread_toc: List[Dict[str,str]] = []
     lines: List[str] = []
 
     for msg in get_messages_iter(conv):
@@ -424,25 +424,16 @@ def conversation_to_md(
             continue
 
         if role == "user":
-            md_quest_text = text.replace("\n", " ").strip()
+            msg_text = text.replace("\n", " ").strip()
             # TODO: -> to structure in order to be sorted
             msg_created = format_timestamp(msg.get("create_time", "")) or ""
-            thread_toc.append(md_quest_text + f" [Created: **{msg_created}**]")
-            lines.append(f'<a id="{md_anchor(md_quest_text)}"></a>\n**You:**\n{text}\n')
+            thread_toc.append({"content":msg_text,"created":msg_created, "link":md_anchor(msg_text,truncate_length)})
+            lines.append(f'<a id="{md_anchor(msg_text)}"></a>\n**You:**\n{text}\n')
         elif role == "assistant":
             lines.append(f"**Assistant:**\n{text}\n")
         else:
             lines.append(f"**{str(role).capitalize()}:**\n{text}\n")
 
-        # make individual conversation TOC
-        md_toc_lines = []
-        for md_quest in thread_toc:
-            truncated = truncate_string_with_ellipsis(md_quest, truncate_length)
-            md_quest_anchor = f"\n[❓{truncated}](#{md_anchor(md_quest)})"
-            md_toc_lines.append(md_quest_anchor)
-        ind_toc = "\n".join(md_toc_lines).strip() + "\n"
-
-    lines = [ind_toc] + lines
     lines = ["## Conversation TOC"] + lines
 
     # Make bookmark text
@@ -562,8 +553,22 @@ def sort_conv(
     else:
         return data
 
+def is_jinja_template_string(s: str) -> bool:
+    """
+    Checks if a string contains common Jinja2 template syntax.
+    This function looks for variable delimiters ({{...}}) and
+    statement/tag delimiters ({%...%}).
+    """
+    # Search for variable delimiters
+    if re.search(r'\{\{.*?\}\}', s):
+        return True
+    # Search for statement/tag delimiters
+    if re.search(r'\{%.*?%\}', s):
+        return True
+    return False
 
-def create_table(
+
+def create_rich_table(
     input_file: str = "",
     sort: SortFields = SortFields.NO_SORT,
     order: SortOrder = SortOrder.ASC,

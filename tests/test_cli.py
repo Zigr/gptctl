@@ -36,27 +36,28 @@ def test_cli_app_list():
 def test_cli_app_show():
     # Without parameters
     result = runner.invoke(app, ["show"])
+    print(result.exit_code)
     assert result.exit_code == 2
-    assert "Missing argument 'TITLE'" in result.stderr
+    assert "Missing argument 'TITLE'" in result.output
 
 
 def test_app_export_json():
     # Without parameters
     result = runner.invoke(app, ["export", "json"])
     assert result.exit_code == 1, "The exit_code is not 1"
-    assert "Aborted" in result.stderr
+    assert "Aborted" in result.output
     # Not existing title(s)
     result = runner.invoke(app, ["export", "json", "-t 1", "-t 2"])
     assert result.exit_code == 1
-    assert "Aborted" in result.stderr
+    assert "Aborted" in result.output
 
 
 def test_app_export_md():
     # Without parameters
     result = runner.invoke(app, ["export", "markdown"])
     assert result.exit_code == 1, "The exit_code is not 1"
-    assert "Aborted" in result.stderr
+    assert "Aborted" in result.output
     # Not existing title(s)
     result = runner.invoke(app, ["export", "markdown", "-t 1", "-t 2"])
     assert result.exit_code == 1
-    assert "Aborted" in result.stderr
+    assert "Aborted" in result.output

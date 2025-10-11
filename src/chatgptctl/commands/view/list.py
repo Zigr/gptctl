@@ -7,7 +7,7 @@ from chatgptctl.definitions import SortFields, SortOrder
 from chatgptctl.utils.utils import (
     collect_conv,
     format_timestamp,
-    create_table,
+    create_rich_table,
     sort_conv,
 )
 
@@ -54,7 +54,7 @@ def list_conversations(
     conv_sorted = sort_conv(data=conv_objs, sort=sort, order=order)
 
     if show_table:
-        table = create_table(input_file=input_file, sort=sort, order=order)
+        table = create_rich_table(input_file=input_file, sort=sort, order=order)
         for i, cs in enumerate(conv_sorted, start=1):
             msg_count = f"{cs.count} w/o system" if skip_system else f"{cs.count}"
             table.add_row(str(i), cs.title, format_timestamp(cs.created), msg_count)
