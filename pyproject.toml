@@ -1,6 +1,6 @@
 [project]
 name = "chatgptctl"
-version = "0.1.0"
+version = "0.1.1"
 description = "CLI to migrate, export, explore individual chatgpt conversation as well as in a batch!"
 authors = [{ name = "ZIgr", email = "zaporozhets.igor@gmail.com" }]
 license = "MIT"
@@ -12,7 +12,10 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Text Processing :: Markup",
 ]
-dependencies = ["typer[all]"]
+dependencies = [
+    "jinja2>=3.1.6",
+    "typer",
+]
 
 [project.optional-dependencies]
 dev = [
@@ -29,12 +32,18 @@ dev = [
     "pytest>=8.4.2",
     "pytest-cov>=7.0.0",
     "pytest-print>=1.1.0",
+    "python-semantic-release>=10.4.1",
     "sphinx-autoapi>=3.6.0",
     "sphinx-rtd-theme>=3.0.2",
 ]
 
 [project.scripts]
 chatgptctl = "chatgptctl.cli:app"
+
+[tool.semantic_release]
+version_toml = [
+    "pyproject.toml:project.version",
+]
 
 [build-system]
 requires = ["hatchling"]
