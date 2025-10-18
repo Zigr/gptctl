@@ -4,7 +4,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from chatgptctl.utils.utils import conversation_to_md, truncate_string_with_ellipsis
+from gptctl.utils.utils import conversation_to_md, truncate_string_with_ellipsis
 
 app = typer.Typer()
 

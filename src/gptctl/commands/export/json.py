@@ -5,8 +5,8 @@ from rich.console import Console
 
 import typer
 from rich.console import Console
-from chatgptctl.definitions import Conversation, SortFields, SortOrder
-from chatgptctl.utils.utils import (
+from gptctl.definitions import Conversation, SortFields, SortOrder
+from gptctl.utils.utils import (
     collect_conv,
     get_batch_filepath,
     get_batch_list,

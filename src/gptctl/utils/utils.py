@@ -9,7 +9,7 @@ import json
 from rich.console import Console
 from rich.table import Table
 import typer
-from chatgptctl.definitions import Conversation, SortFields, SortOrder
+from gptctl.definitions import Conversation, SortFields, SortOrder
 
 
 FENCED_CODE_RE = re.compile(r"```[\s\S]*?```", re.MULTILINE)
@@ -79,6 +79,22 @@ def find_by_title(conversations: List[dict], title: str) -> Any:
             return conv
     return None
 
+def find_msg_by_title(mapping: Dict[str, Any], title: str) -> Optional[str]:
+    """finds message by title in one thread
+
+    Args:
+        mapping (Dict[str, Any]): Message thread mapping given
+        title (str): message title
+
+    Returns:
+        Optional[str]: message id or None
+    """
+    for mid, obj in mapping.items():
+        msg = obj.get("message", {})
+        msg_title = msg.get("metadata", {}).get("title")
+        if msg_title and title.lower() in msg_title.lower():
+            return mid
+    return None
 
 def md_anchor(title: str,truncate_length:Optional[int] =80) -> str:
     """Sanitize text suitable for a Markdown anchor link.

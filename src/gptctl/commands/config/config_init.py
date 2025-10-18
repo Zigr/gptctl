@@ -5,8 +5,8 @@ import typer
 from rich.console import Console
 from rich.prompt import Prompt
 
-from chatgptctl.utils.utils import default_config_path
-from chatgptctl.config import AppConfig
+from gptctl.utils.utils import default_config_path
+from gptctl.config import AppConfig
 
 app = typer.Typer()
 

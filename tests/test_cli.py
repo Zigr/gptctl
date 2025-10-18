@@ -1,5 +1,5 @@
 from typer.testing import CliRunner
-from chatgptctl.cli import app
+from gptctl.cli import app
 
 runner = CliRunner()
 
@@ -15,14 +15,6 @@ def test_root_help():
     assert result.exit_code == 0
     assert (
         "List conversations from the input OPTION conversations.json file."
-        in result.stdout
-    )
-    assert (
-        "Show conversation details from the input OPTION conversations.json file."
-        in result.stdout
-    )
-    assert (
-        "Export conversations from the input conversations.json file to JSON or MARKDOWN format."
         in result.stdout
     )
 

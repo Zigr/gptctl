@@ -2,9 +2,9 @@ from pathlib import Path
 from typing import Annotated, Optional
 import logging
 
-from chatgptctl.utils.utils import check_config_exists, default_config_path
+from gptctl.utils.utils import check_config_exists, default_config_path
 
-from chatgptctl import __version__
+from gptctl import __version__
 
 from rich.console import Console
 from rich.logging import RichHandler

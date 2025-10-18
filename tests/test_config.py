@@ -1,4 +1,4 @@
-from chatgptctl.config import AppConfig
+from gptctl.config import AppConfig
 import sys
 
 

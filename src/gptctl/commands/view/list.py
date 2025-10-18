@@ -3,8 +3,8 @@ from typing import Annotated
 import typer
 from rich.console import Console
 
-from chatgptctl.definitions import SortFields, SortOrder
-from chatgptctl.utils.utils import (
+from gptctl.definitions import SortFields, SortOrder
+from gptctl.utils.utils import (
     collect_conv,
     format_timestamp,
     create_rich_table,
