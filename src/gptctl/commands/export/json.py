@@ -120,11 +120,11 @@ def export_json(
 
     ```bash
     # Export one title
-    $ chatgptctl export json --title My\\ conversation\\ title\\ 10
+    $ gptctl export json --title My\\ conversation\\ title\\ 10
     # Export several titles
-    $ chatgptctl --output-dir export json -t 'My conversation title 5' -t 'My conversation title 2' -t 'My conversation title 15'
+    $ gptctl --output-dir export json -t 'My conversation title 5' -t 'My conversation title 2' -t 'My conversation title 15'
     # Export all titles
-    $ chatgptctl export json --title "*"
+    $ gptctl export json --title "*"
     ```
     """
     cfg = ctx.obj["config"]

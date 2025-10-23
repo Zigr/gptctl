@@ -15,7 +15,7 @@ from .commands.export import app as export_app
 from .commands.config import app as config_app
 from .config import AppConfig
 
-APP_NAME = "chatgptctl"
+APP_NAME = "gptctl"
 DEFAULT_CONFIG = AppConfig().to_dict()
 logger = logging.getLogger("rich")
 console = Console()
@@ -45,8 +45,8 @@ CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](#)
-[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/chatgptctl/ci.yml)](#)
-[![Stars](https://img.shields.io/github/stars/Zigr/chatgptctl.svg?style=social&label=Star)](https://github.com/Zigr/chatgptctl/stargazers)
+[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/gptctl/ci.yml)](#)
+[![Stars](https://img.shields.io/github/stars/Zigr/gptctl.svg?style=social&label=Star)](https://github.com/Zigr/gptctl/stargazers)
 
 ## [INTRODUCTION(more details)](./INTRODUCTION.md)
 
@@ -63,7 +63,7 @@ app.add_typer(view_app)
 app.add_typer(
     export_app,
     name="export",
-    help="Export conversations from the ***input*** conversations.json file to JSON or MARKDOWN format. See chatgptctl **export command --help** for details.",
+    help="Export conversations from the ***input*** conversations.json file to JSON or MARKDOWN format. See gptctl **export command --help** for details.",
 )
 app.add_typer(
     config_app, name="config", help="Configuration file(s) operations: show, create"

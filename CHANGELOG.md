@@ -6,7 +6,7 @@
 
 ### Refactor
 
-- chatgptctl show my_thread **-toc** as table
+- gptctl show my_thread **-toc** as table
 
 ### Chore
 
@@ -14,7 +14,7 @@
 
 ## v0.1.0 (03/10/2025)
 
-- First release of `chatgptctl` (MVP-like)!
+- First release of `gptctl` (MVP-like)!
   - **Features**
     - **list**, **show** conversations.json
     - **export** to json and markdown formats

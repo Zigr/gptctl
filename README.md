@@ -1,13 +1,13 @@
 # `gptctl`
 
-![Manage your ChatGPT exports](./docs/header.png 'Manage your ChatGPT exports')
+![Manage your ChatGPT exports](./docs/header.png &#x27;Manage your ChatGPT exports&#x27;)
 
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](#)
-[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/chatgptctl/ci.yml)](#)
-[![Stars](https://img.shields.io/github/stars/Zigr/chatgptctl.svg?style=social&amp;label=Star)](https://github.com/Zigr/chatgptctl/stargazers)
+[![Build](https://img.shields.io/github/actions/workflow/status/Zigr/gptctl/ci.yml)](#)
+[![Stars](https://img.shields.io/github/stars/Zigr/gptctl.svg?style=social&amp;label=Star)](https://github.com/Zigr/gptctl/stargazers)
 
 ## [INTRODUCTION(more details)](./INTRODUCTION.md)
 
@@ -24,7 +24,7 @@ $ gptctl [OPTIONS] COMMAND [ARGS]...
 * `-i, --input TEXT`: Path to input conversations.json file
 * `--output-dir TEXT`: Path to output directory  [default: ./data/conversations]
 * `-o, --output TEXT`: Path to output file. Depends on the command used.  [default: ./data/messages_summary.json]
-* `-c, --config PATH`: Path to config.json file with overrides internal defaults  [default: /home/zigr/.config/chatgptctl/config.json]
+* `-c, --config PATH`: Path to config.json file with overrides internal defaults  [default: /home/zigr/.config/gptctl/config.json]
 * `--dry-run`: Perform a trial run with no changes made. Output is printed to console.
 * `-tl, --truncate-len INTEGER`: Shorten long strings (for ***dry-run*** preview)  [default: 120]
 * `-v, --verbose`: Enable verbose output. Increase verbosity (-v, -vv(very verbose) -vvv(very very verbose, i.e. debug)) for more details.  [default: 0]
@@ -81,7 +81,7 @@ $ gptctl show [OPTIONS] TITLE
 
 ## `gptctl export`
 
-Export conversations from the ***input*** conversations.json file to JSON or MARKDOWN format. See chatgptctl **export command --help** for details.
+Export conversations from the ***input*** conversations.json file to JSON or MARKDOWN format. See gptctl **export command --help** for details.
 
 **Usage**:
 
@@ -107,11 +107,11 @@ Example Usage:
 
 ```bash
 # Export one title
-$ chatgptctl export json --title My\ conversation\ title\ 10
+$ gptctl export json --title My\ conversation\ title\ 10
 # Export several titles
-$ chatgptctl --output-dir export json -t &#x27;My conversation title 5&#x27; -t &#x27;My conversation title 2&#x27; -t &#x27;My conversation title 15&#x27;
+$ gptctl --output-dir export json -t &#x27;My conversation title 5&#x27; -t &#x27;My conversation title 2&#x27; -t &#x27;My conversation title 15&#x27;
 # Export all titles
-$ chatgptctl export json --title &quot;*&quot;
+$ gptctl export json --title &quot;*&quot;
 ```
 
 **Usage**:
@@ -142,7 +142,7 @@ Example Usage:
 # with file names prefixed by **creation date**
 # and also export these conversations into single combined file **./data/conversations-all.md**
 
-$ chatgptctl --input ./data/conversations.json --output-dir ./data/conversations-md --output ./data/conversations-all.md .data/conversations-md/ -t * --sort created --order asc --combined --prefix-with-date
+$ gptctl --input ./data/conversations.json --output-dir ./data/conversations-md --output ./data/conversations-all.md .data/conversations-md/ -t * --sort created --order asc --combined --prefix-with-date
 
 ```
 
@@ -167,7 +167,7 @@ $ gptctl export markdown [OPTIONS]
 
 Export a range or subtree of messages, preserving parent-child structure and chronology.
 Example Usage:
-chatgptctl export --start &quot;AI Agentic Workflows&quot; --end &quot;Dust / Pydust&quot; --include-children --depth 2 --context-limit 3 --format markdown
+gptctl export --start &quot;AI Agentic Workflows&quot; --end &quot;Dust / Pydust&quot; --include-children --depth 2 --context-limit 3 --format markdown
 
 **Usage**:
 
@@ -218,7 +218,7 @@ $ gptctl config show [OPTIONS] [CONFIG_PATH]
 
 **Arguments**:
 
-* `[CONFIG_PATH]`: Path to config file to show  [default: /home/zigr/.config/chatgptctl/config.json]
+* `[CONFIG_PATH]`: Path to config file to show  [default: /home/zigr/.config/gptctl/config.json]
 
 **Options**:
 
@@ -239,7 +239,7 @@ $ gptctl config init [OPTIONS] [CONFIG_FILE]
 
 **Arguments**:
 
-* `[CONFIG_FILE]`: Path to config file to init  [default: /home/zigr/.config/chatgptctl/config.json]
+* `[CONFIG_FILE]`: Path to config file to init  [default: /home/zigr/.config/gptctl/config.json]
 
 **Options**:
 

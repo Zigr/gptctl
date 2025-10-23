@@ -80,7 +80,7 @@ def export_markdown(
     # with file names prefixed by **creation date**
     # and also export these conversations into single combined file **./data/conversations-all.md**
 
-    $ chatgptctl --input ./data/conversations.json --output-dir ./data/conversations-md --output ./data/conversations-all.md .data/conversations-md/ -t * --sort created --order asc --combined --prefix-with-date
+    $ gptctl --input ./data/conversations.json --output-dir ./data/conversations-md --output ./data/conversations-all.md .data/conversations-md/ -t * --sort created --order asc --combined --prefix-with-date
 
     ```
     """

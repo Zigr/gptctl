@@ -199,7 +199,7 @@ class AppConfig:
         return my_dict
 
 
-def default_config_path(app_name: str = "chatgptctl") -> Path:
+def default_config_path(app_name: str = "gptctl") -> Path:
     app_dir = typer.get_app_dir(app_name)
     default_config_path = Path(app_dir) / "config.json"
     return default_config_path

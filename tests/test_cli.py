@@ -6,7 +6,7 @@ runner = CliRunner()
 
 def test_cli_app():
     result = runner.invoke(app, [""])
-    assert "Try 'chatgptctl --help' for help." in result.output
+    assert "Try 'gptctl --help' for help." in result.output
 
 
 def test_root_help():

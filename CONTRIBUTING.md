@@ -40,11 +40,11 @@ If you are proposing a feature:
 
 ## Get Started!
 
-Ready to contribute? Here's how to set up `chatgptctl` for local development.
+Ready to contribute? Here's how to set up `gptctl` for local development.
 
-1. Download a copy of `chatgptctl` locally.
+1. Download a copy of `gptctl` locally.
 
-2. Create and activate any virtual environment for `chatgptctl`:
+2. Create and activate any virtual environment for `gptctl`:
 
     ```console
     # Python pip
@@ -54,13 +54,13 @@ Ready to contribute? Here's how to set up `chatgptctl` for local development.
 
     ```console
     # For conda
-    $ conda create -n chatgptctl python=3.12
-    $ conda activate chatgptctl
+    $ conda create -n gptctl python=3.12
+    $ conda activate gptctl
     ```
 
     etc...
 
-3. Install `chatgptctl` using your develompment tool:
+3. Install `gptctl` using your develompment tool:
 
     ```console
     # For poetry
@@ -88,5 +88,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `chatgptctl` project is released with a
+Please note that the `gptctl` project is released with a
 [Code of Conduct](./CONDUCT.md). By contributing to this project you agree to abide by its terms.

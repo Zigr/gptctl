@@ -1,4 +1,4 @@
-# chatgptctl INTRODUCTION
+# gptctl INTRODUCTION
 
 ## Export ChatGPT Data
 
@@ -22,12 +22,12 @@ chatgpt-data-d_m _Y
 
 ```
 
-## 🚀 Why chatgptctl?
+## 🚀 Why gptctl?
 
 When ChatGPT exports your data as a massive `conversations.json`, it’s nearly unreadable.  
-**chatgptctl** makes it practical — view, filter, and export your conversations cleanly from the terminal.
+**gptctl** makes it practical — view, filter, and export your conversations cleanly from the terminal.
 
-Whether you want to archive old chats, analyze your prompts, or create markdown summaries — chatgptctl helps you do it with ease.
+Whether you want to archive old chats, analyze your prompts, or create markdown summaries — gptctl helps you do it with ease.
 
 ---
 
@@ -46,16 +46,16 @@ Whether you want to archive old chats, analyze your prompts, or create markdown 
 
 ```bash
 # 1. Clone or install
-pip install git+https://github.com/Zigr/chatgptctl.git
+pip install git+https://github.com/Zigr/gptctl.git
 
 # 2. Run basic commands
-chatgptctl list
-chatgptctl show 12345
-chatgptctl export markdown -t "*" --sort created --order asc
+gptctl list
+gptctl show 12345
+gptctl export markdown -t "*" --sort created --order asc
 
 ## 🧰 Commands Overview
 
-Run chatgptctl --help to view all options.
+Run gptctl --help to view all options.
 
 ---
 
@@ -64,7 +64,7 @@ Run chatgptctl --help to view all options.
 Default config location:
 
 ```text
-~/.config/chatgptctl/config.json
+~/.config/gptctl/config.json
 
 ```
 
@@ -88,14 +88,14 @@ Override any setting using command-line flags.
 List all conversations:
 
 ```bash
-chatgptctl list --sort created --order desc
+gptctl list --sort created --order desc
 
 ```
 
 Export all chats to Markdown:
 
 ```bash
-chatgptctl export markdown -t "*" --output ./exports
+gptctl export markdown -t "*" --output ./exports
 
 ```
 
@@ -181,8 +181,8 @@ This project is licensed under the MIT License
 
 ## 🌟 Support & Feedback
 
-If you find chatgptctl useful, please give it a ⭐ on GitHub — it helps others discover the project.
-For suggestions, feedback, or feature requests, visit the [Discussions](https://github.com/Zigr/chatgptctl/discussions)
+If you find gptctl useful, please give it a ⭐ on GitHub — it helps others discover the project.
+For suggestions, feedback, or feature requests, visit the [Discussions](https://github.com/Zigr/gptctl/discussions)
 
 ## [DEMOS](./DEMOS.md)
 

@@ -27,7 +27,7 @@ def thread_partial (
     """
     Export a range or subtree of messages, preserving parent-child structure and chronology.
     Example Usage:
-    chatgptctl export --start "AI Agentic Workflows" --end "Dust / Pydust" --include-children --depth 2 --context-limit 3 --format markdown
+    gptctl export --start "AI Agentic Workflows" --end "Dust / Pydust" --include-children --depth 2 --context-limit 3 --format markdown
     """
     data = json.loads(data_file.read_text())
     messages = {

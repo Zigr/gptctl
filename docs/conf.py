@@ -6,7 +6,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u"chatgptctl"
+project = u"gptctl"
 copyright = u"2025, Igor Zaporozhets"
 author = u"Igor Zaporozhets"
 

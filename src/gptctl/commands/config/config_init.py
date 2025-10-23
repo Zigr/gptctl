@@ -27,7 +27,7 @@ def init(
     force: bool = typer.Option(False, "--force", help="Overwrite existing config."),
 ) -> None:
     console: Console = ctx.obj["console"]
-    command_name = "chatgptctl"
+    command_name = "gptctl"
     config_path = config_file or default_config_path()
 
     if config_path.exists() and not force:

@@ -5,4 +5,4 @@
 * [ ] Introduce plugin API for custom exporters
 * [ ] Add conversation search engine (regex/full-text)
 
-Have an idea? Open an [issue](https://github.com/Zigr/chatgptctl/issues)
+Have an idea? Open an [issue](https://github.com/Zigr/gptctl/issues)
