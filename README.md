@@ -1,6 +1,6 @@
-# `chatgptctl`
+# `gptctl`
 
-![Manage your ChatGPT exports](./docs/header.png 'Manage your ChatGPT exports')
+![Manage your ChatGPT exports](./docs/header.png &#x27;Manage your ChatGPT exports&#x27;)
 
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
@@ -16,12 +16,12 @@ CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.
 **Usage**:
 
 ```console
-$ chatgptctl [OPTIONS] COMMAND [ARGS]...
+$ gptctl [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
 
-* `-i, --input TEXT`: Path to input conversations.json file  [default: ./data/conversations.json]
+* `-i, --input TEXT`: Path to input conversations.json file
 * `--output-dir TEXT`: Path to output directory  [default: ./data/conversations]
 * `-o, --output TEXT`: Path to output file. Depends on the command used.  [default: ./data/messages_summary.json]
 * `-c, --config PATH`: Path to config.json file with overrides internal defaults  [default: /home/zigr/.config/chatgptctl/config.json]
@@ -40,14 +40,14 @@ $ chatgptctl [OPTIONS] COMMAND [ARGS]...
 * `export`: Export conversations from the ***input***...
 * `config`: Configuration file(s) operations: show,...
 
-## `chatgptctl list`
+## `gptctl list`
 
 List conversations from the ***input OPTION*** conversations.json file. ✨
 
 **Usage**:
 
 ```console
-$ chatgptctl list [OPTIONS]
+$ gptctl list [OPTIONS]
 ```
 
 **Options**:
@@ -58,14 +58,14 @@ $ chatgptctl list [OPTIONS]
 * `-t, --table / -T, --no-table`: Show as a table. Otherwise as a comma-separated titles  [default: table]
 * `--help`: Show this message and exit.
 
-## `chatgptctl show`
+## `gptctl show`
 
 Show conversation details from the ***input OPTION*** conversations.json file. ✨
 
 **Usage**:
 
 ```console
-$ chatgptctl show [OPTIONS] TITLE
+$ gptctl show [OPTIONS] TITLE
 ```
 
 **Arguments**:
@@ -75,17 +75,18 @@ $ chatgptctl show [OPTIONS] TITLE
 **Options**:
 
 * `-toc, --toc-only`: Show user questions of the given converstation only
+* `-sug, --suggestions`: Show **user** questions of the given converstation and **assistant** suggestions too
 * `--skip-system / --no-skip-system`: Skip system messages  [default: skip-system]
 * `--help`: Show this message and exit.
 
-## `chatgptctl export`
+## `gptctl export`
 
 Export conversations from the ***input*** conversations.json file to JSON or MARKDOWN format. See chatgptctl **export command --help** for details.
 
 **Usage**:
 
 ```console
-$ chatgptctl export [OPTIONS] COMMAND [ARGS]...
+$ gptctl export [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -96,8 +97,9 @@ $ chatgptctl export [OPTIONS] COMMAND [ARGS]...
 
 * `json`: Export one or ___more___ (in a batch)...
 * `markdown`: Export one or ___more___ (in a batch)...
+* `partial`: Export a range or subtree of messages,...
 
-### `chatgptctl export json`
+### `gptctl export json`
 
 Export one or ___more___ (in a batch) conversations to a ___\*.json___ file(s). 🚀
 
@@ -115,7 +117,7 @@ $ chatgptctl export json --title &quot;*&quot;
 **Usage**:
 
 ```console
-$ chatgptctl export json [OPTIONS]
+$ gptctl export json [OPTIONS]
 ```
 
 **Options**:
@@ -128,7 +130,7 @@ $ chatgptctl export json [OPTIONS]
 * `--skip-system / --no-skip-system`: Skip system messages  [default: skip-system]
 * `--help`: Show this message and exit.
 
-### `chatgptctl export markdown`
+### `gptctl export markdown`
 
 Export one or ___more___ (in a batch) conversations to a ___markdown (\*.md)___ file(s). 🚀
 
@@ -147,7 +149,7 @@ $ chatgptctl --input ./data/conversations.json --output-dir ./data/conversations
 **Usage**:
 
 ```console
-$ chatgptctl export markdown [OPTIONS]
+$ gptctl export markdown [OPTIONS]
 ```
 
 **Options**:
@@ -161,14 +163,38 @@ $ chatgptctl export markdown [OPTIONS]
 * `--skip-system / --no-skip-system`: Skip system messages  [default: skip-system]
 * `--help`: Show this message and exit.
 
-## `chatgptctl config`
+### `gptctl export partial`
+
+Export a range or subtree of messages, preserving parent-child structure and chronology.
+Example Usage:
+chatgptctl export --start &quot;AI Agentic Workflows&quot; --end &quot;Dust / Pydust&quot; --include-children --depth 2 --context-limit 3 --format markdown
+
+**Usage**:
+
+```console
+$ gptctl export partial [OPTIONS]
+```
+
+**Options**:
+
+* `--thread TEXT`: Thread ID (optional, auto-detected)
+* `--start TEXT`: Start message title or ID  [required]
+* `--end TEXT`: End message title or ID (optional)
+* `--include-children`: Include children recursively
+* `--depth INTEGER`: Limit child recursion depth
+* `--context-limit INTEGER`: Limit number of ancestors to include
+* `--format TEXT`: Output format: markdown or text  [default: markdown]
+* `--data-file PATH`: Path to ChatGPT export JSON file  [default: conversations.json]
+* `--help`: Show this message and exit.
+
+## `gptctl config`
 
 Configuration file(s) operations: show, create
 
 **Usage**:
 
 ```console
-$ chatgptctl config [OPTIONS] COMMAND [ARGS]...
+$ gptctl config [OPTIONS] COMMAND [ARGS]...
 ```
 
 **Options**:
@@ -180,14 +206,14 @@ $ chatgptctl config [OPTIONS] COMMAND [ARGS]...
 * `show`: Show configuration
 * `init`: **Initialize/create** configuration file...
 
-### `chatgptctl config show`
+### `gptctl config show`
 
 Show configuration
 
 **Usage**:
 
 ```console
-$ chatgptctl config show [OPTIONS] [CONFIG_PATH]
+$ gptctl config show [OPTIONS] [CONFIG_PATH]
 ```
 
 **Arguments**:
@@ -198,7 +224,7 @@ $ chatgptctl config show [OPTIONS] [CONFIG_PATH]
 
 * `--help`: Show this message and exit.
 
-### `chatgptctl config init`
+### `gptctl config init`
 
 **Initialize/create** configuration file with defaults in a default location.
 But you can init as many config files as you want. 
@@ -208,7 +234,7 @@ NOTE: config files do not support inherited configuration values overrides.You s
 **Usage**:
 
 ```console
-$ chatgptctl config init [OPTIONS] [CONFIG_FILE]
+$ gptctl config init [OPTIONS] [CONFIG_FILE]
 ```
 
 **Arguments**:
