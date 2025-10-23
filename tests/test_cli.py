@@ -50,6 +50,8 @@ def test_app_export_md():
     assert result.exit_code == 1, "The exit_code is not 1"
     assert "Aborted" in result.output
     # Not existing title(s)
-    result = runner.invoke(app, ["export", "markdown", "-t 1", "-t 2"])
+    result = runner.invoke(app, ["export", "markdown", "-t", "Unknown 1", "-t", "Unknown 2"])
     assert result.exit_code == 1
     assert "Aborted" in result.output
+    assert "not found in conversations file" in result.output
+

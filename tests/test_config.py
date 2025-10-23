@@ -1,5 +1,4 @@
 from gptctl.config import AppConfig
-import sys
 
 
 def test_load_config():
