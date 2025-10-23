@@ -4,7 +4,7 @@ from typing import Annotated
 import typer
 from rich.console import Console
 
-from gptctl.utils.utils import check_config_exists, default_config_path
+from gptctl.config import check_config_exists, default_config_path
 
 app = typer.Typer()
 

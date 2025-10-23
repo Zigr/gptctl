@@ -68,6 +68,7 @@ def export_markdown(
         bool,
         typer.Option("--skip-system / --no-skip-system", help="Skip system messages"),
     ] = True,
+
 ):
     """Export one or ___more___ (in a batch) conversations to a ___markdown (\\*.md)___ file(s). :rocket:
 
@@ -105,7 +106,7 @@ def export_markdown(
         titles = title
 
     conv_objs = collect_conv(
-        conversations = conversations,
+        conversations=conversations,
         titles=titles,
         skip_system=skip_system,
         console=console,

@@ -2,7 +2,7 @@ from pathlib import Path
 from typing import Annotated, Optional
 import logging
 
-from gptctl.utils.utils import check_config_exists, default_config_path
+from gptctl.config import check_config_exists, default_config_path
 
 from gptctl import __version__
 
@@ -16,7 +16,6 @@ from .commands.config import app as config_app
 from .config import AppConfig
 
 APP_NAME = "chatgptctl"
-DEFAULT_CONFIG_PATH: Optional[Path] = None
 DEFAULT_CONFIG = AppConfig().to_dict()
 logger = logging.getLogger("rich")
 console = Console()
@@ -129,7 +128,7 @@ def main_callback(
             help="Path to input conversations.json file",
             rich_help_panel="Path OPTIONS",
         ),
-    ] = DEFAULT_CONFIG["input_file"],
+    ] = "",
     output_dir: Annotated[
         str,
         typer.Option(help="Path to output directory", rich_help_panel="Path OPTIONS"),
@@ -219,9 +218,30 @@ def main_callback(
 
     # file_config = load_config(config, verbose)
     # cfg = resolve_config(ctx.params, file_config, verbose)
-    _ = check_config_exists(config=config, console=console)
-    cfg: AppConfig = AppConfig().get_config(config_path=str(config), args=ctx.params)
-    ctx.obj["config"] = cfg.to_dict() if cfg else {}
+    config_path = default_config_path()
+    g_config_exists = check_config_exists(config=config_path, console=console)
+    if g_config_exists:
+        cfg_result = AppConfig().get_config(
+            config_path=str(config_path), args=ctx.params
+        )
+    else:
+        cfg_result = AppConfig().get_config(args=ctx.params)
+    if isinstance(cfg_result, dict):
+        try:
+            cfg = AppConfig(**cfg_result)
+        except TypeError:
+            # Fallback: populate a new AppConfig with known attributes if direct construction fails
+            cfg = AppConfig()
+            for k, v in cfg_result.items():
+                if hasattr(cfg, k):
+                    setattr(cfg, k, v)
+    elif isinstance(cfg_result, AppConfig):
+        # cfg_result is already the expected type
+        cfg = cfg_result
+    else:
+        # Fallback to a default AppConfig when cfg_result is None or an unexpected type
+        cfg = AppConfig()
+    ctx.obj["config"] = cfg.to_dict()
     ctx.obj["console"] = console
 
 

@@ -4,13 +4,11 @@ from typing import Annotated, Any, List, Optional
 from rich.console import Console
 
 import typer
-from rich.console import Console
 from gptctl.definitions import Conversation, SortFields, SortOrder
 from gptctl.utils.utils import (
     collect_conv,
     get_batch_filepath,
     get_batch_list,
-    find_by_title,
     get_filepath,
     sort_conv,
 )

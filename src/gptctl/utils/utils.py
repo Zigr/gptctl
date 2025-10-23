@@ -678,20 +678,3 @@ def get_filepath(
     filepath = os.path.join(output_dir, filename)
     return filepath
 
-
-def default_config_path(app_name:str="chatgptctl") -> Path:
-    app_dir = typer.get_app_dir(app_name)
-    default_config_path = Path(app_dir) / "config.json"
-    return default_config_path
-
-
-def check_config_exists(config: Path, console: Optional[Console] = None) -> bool:
-    if not config.exists():
-        if console:
-            console.print(
-                f"The config file [bold magenta]{config}[bold magenta] doesn't exist."
-            )
-        else:
-            print(f"The config file {config} doesn't exist. Using internal defaults")
-        return False
-    return True

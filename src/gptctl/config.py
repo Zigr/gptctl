@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from typing import Any, Optional
 from rich.console import Console
+import typer
 
 
 @dataclass
@@ -22,7 +23,9 @@ class AppConfig:
     combined_file: str = "all_conversations.md"
     prefix_with_date: bool = True
     truncate_len: int = 120
-    console: Optional[Console] = field(compare=False,repr=False, default=None) #class defaults: eq=True, frozen=False
+    console: Optional[Console] = field(
+        compare=False, repr=False, default=None
+    )  # class defaults: eq=True, frozen=False
 
     @classmethod
     def load(cls, config_path: str = "", verbosity: int = 0):
@@ -71,7 +74,21 @@ class AppConfig:
         console: Any = None,
     ):
         # 1) Start with defaults
-        eff_cfg = file_config
+        # eff_cfg = AppConfig()
+
+        if Path(config_path).exists():
+            eff_cfg = AppConfig.load(config_path=config_path, verbosity=verbosity)
+            if eff_cfg and isinstance(eff_cfg, AppConfig):
+                eff_cfg = AppConfig(**eff_cfg.to_dict())
+        elif file_config and isinstance(file_config, AppConfig):
+            eff_cfg = AppConfig(**file_config.to_dict())
+        else:
+            eff_cfg = AppConfig()
+
+        if eff_cfg is not None:
+            eff_cfg = eff_cfg.to_dict()
+        else:
+            eff_cfg = {}
 
         # 2) Load from config.json if provided
         if hasattr(args, "config") and Path(args["config"]).exists():
@@ -79,34 +96,82 @@ class AppConfig:
                 eff_cfg = json.load(f)
 
         # 3) Apply CLI overrides
-        if args.get("input"):
-            eff_cfg.input_file = args["input"]
-        if args.get("output"):
-            eff_cfg.output_file = args["output"]
-        if args.get("output_dir"):
-            eff_cfg.output_dir = args["output_dir"]
-        if args.get("combined_file"):
-            eff_cfg.combined_file = args["combined_file"]
-        if args.get("prefix_with_date") is not None:
-            eff_cfg.prefix_with_date = args["prefix_with_date"]
-        if args.get("truncate_len") is not None:
-            eff_cfg.truncate_len = args["truncate_len"]
+        if args.get("input") and eff_cfg.get("input_file") is not None:
+            eff_cfg["input_file"] = args["input"]
+        if args.get("output") and eff_cfg.get("output_file") is not None:
+            eff_cfg["output_file"] = args["output"]
+        if args.get("output_dir") and eff_cfg.get("output_dir") is not None:
+            eff_cfg["output_dir"] = args["output_dir"]
+
+        if args.get("combined_file") and eff_cfg.get("combined_file") is not None:
+            eff_cfg["combined_file"] = args["combined_file"]
+        if args.get("prefix_with_date") and eff_cfg.get("prefix_with_date") is not None:
+            eff_cfg["prefix_with_date"] = args["prefix_with_date"]
+        if args.get("truncate_len") and eff_cfg.get("truncate_len") is not None:
+            eff_cfg["truncate_len"] = args["truncate_len"]
 
         # Format options
-        if hasattr(args, "max_examples"):
-            eff_cfg.format.max_examples = args["max_examples"]
-        if args.get("collapse_threshold"):
-            eff_cfg.format.collapse_threshold = args["collapse_threshold"]
-        if hasattr(args, "max_examples"):
-            eff_cfg.format.max_examples = args["max_examples"]
-        if hasattr(args, "collapse_threshold"):
-            eff_cfg.format.collapse_threshold = args["collapse_threshold"]
-
+        if (
+            args.get("max_examples") is not None
+            and isinstance(eff_cfg, dict)
+            and "max_examples" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["max_examples"] = args["max_examples"]
+        if (
+            args.get("collapse_threshold") is not None
+            and isinstance(eff_cfg, dict)
+            and "collapse_threshold" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
+        if (
+            args.get("max_examples") is not None
+            and isinstance(eff_cfg, dict)
+            and "max_examples" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["max_examples"] = args["max_examples"]
+        if (
+            args.get("collapse_threshold") is not None
+            and isinstance(eff_cfg, dict)
+            and "collapse_threshold" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
+        if (
+            args.get("max_examples") is not None
+            and isinstance(eff_cfg, dict)
+            and "max_examples" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["max_examples"] = args["max_examples"]
+        if (
+            args.get("collapse_threshold") is not None
+            and isinstance(eff_cfg, dict)
+            and "collapse_threshold" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
+        if (
+            args.get("max_examples") is not None
+            and isinstance(eff_cfg, dict)
+            and "max_examples" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["max_examples"] = args["max_examples"]
+        if (
+            args.get("collapse_threshold") is not None
+            and isinstance(eff_cfg, dict)
+            and "collapse_threshold" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
             # Handle noisy fields
-        if args.get("clear_noisy_fields") is not None and args["clear_noisy_fields"]:
-            eff_cfg.format.noisy_fields = []
-        if args.get("noisy_fields"):
-            eff_cfg.format.noisy_fields = args["noisy_fields"]
+        if (
+            args.get("clear_noisy_fields") is not None
+            and isinstance(eff_cfg, dict)
+            and "noisy_fields" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["noisy_fields"] = []
+        if (
+            args.get("noisy_fields") is not None
+            and isinstance(eff_cfg, dict)
+            and "noisy_fields" in eff_cfg["format"]
+        ):
+            eff_cfg["format"]["noisy_fields"] = args["noisy_fields"]
 
         if verbosity >= 2:
             if console:
@@ -114,7 +179,7 @@ class AppConfig:
             else:
                 print(f"Effective config: {eff_cfg}")
 
-        return eff_cfg
+        return AppConfig(**eff_cfg)
 
     @classmethod
     def get_config(cls, config_path: str = "", args: dict = {}, verbosity: int = 0):
@@ -129,6 +194,24 @@ class AppConfig:
 
     def to_dict(self) -> dict[str, Any]:
         """Convert config to dictionary."""
-        my_dict=asdict(self)
-        del(my_dict["console"])
+        my_dict = asdict(self)
+        del my_dict["console"]
         return my_dict
+
+
+def default_config_path(app_name: str = "chatgptctl") -> Path:
+    app_dir = typer.get_app_dir(app_name)
+    default_config_path = Path(app_dir) / "config.json"
+    return default_config_path
+
+
+def check_config_exists(config: Path, console: Optional[Console] = None) -> bool:
+    if not config.exists():
+        if console:
+            console.print(
+                f"The config file [bold magenta]{config}[bold magenta] doesn't exist."
+            )
+        else:
+            print(f"The config file {config} doesn't exist. Using internal defaults")
+        return False
+    return True

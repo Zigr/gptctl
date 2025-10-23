@@ -9,6 +9,7 @@ SUGGESTION_KEY_PHRASES = [
     "shall i",
     "do you want me to",
     "would you like me to",
+    "let me know",
 ]
 SUGGESTION_RE = re.compile(
     r"(?i)\b(?:" + "|".join(re.escape(p) for p in SUGGESTION_KEY_PHRASES) + r")\b.*\?$"
@@ -126,6 +127,85 @@ def extract_suggestion(node):
     if SUGGESTION_RE.search(last):
         return last
     # also accept polite offers with no question mark (optional; comment/uncomment)
-    # if any(k in last.lower() for k in SUGGESTION_KEY_PHRASES):
-    #     return last
+    if any(k in last.lower() for k in SUGGESTION_KEY_PHRASES):
+        return last
     return ""
+
+
+def analyze_conversations(data):
+    rows = []
+    for conv in data:
+        title = conv.get("title", "Untitled")
+        # print(f"Analyzing conversation: {title}")
+        mapping = conv.get("mapping", {})
+
+        if not isinstance(mapping, dict):
+            continue
+
+        # print(f"Total messages in mapping: {len(mapping)}")
+        sorted_msgs = sorted(mapping.values(), key=lambda x: x.get("create_time", 0))
+        # print(f"Total sorted messages: {len(sorted_msgs)}")
+        previous_user_msg = None
+
+        for msg in sorted_msgs:
+            m_obj = msg.get("message", {})
+            message_id = msg.get("id", "unknown")
+            # print(f"Message object: {m_obj}")
+
+            if m_obj is None:
+                print(f"Skipping message ID {message_id} with no content.")
+                continue
+
+            role = m_obj.get("author", {}).get("role")
+            text = extract_text(m_obj)
+            if not text:
+                continue
+
+            # print(
+            #     f"Processing message ID {message_id} with role {role} created at {m_obj.get('create_time', 0)} text: {text[:30]}..."
+            # )
+
+            if role == "user":
+                previous_user_msg = text
+                rows.append(
+                    {
+                        "conversation_title": title,
+                        "message_id": message_id,
+                        "role": "user",
+                        "message_text": text,
+                        "paired_user_message": text,
+                        "paired_assistant_suggestion": "",
+                    }
+                )
+                # print(rows)
+                # break
+
+            elif role == "assistant":
+                suggestion = extract_suggestion(msg)
+                if suggestion:
+                    rows.append(
+                        {
+                            "conversation_title": title,
+                            "message_id": message_id,
+                            "role": "assistant",
+                            "message_text": suggestion,
+                            "paired_user_message": previous_user_msg or "",
+                            "paired_assistant_suggestion": suggestion,
+                        }
+                    )
+    return rows
+
+
+def export_markdown(rows):
+    md_lines = ["### 🧩 User ↔ Assistant Suggestion Pairs\n"]
+    md_lines.append(
+        "| Conversation | Role | Message ID | Message Text | Paired User Message | Assistant Suggestion |"
+    )
+    md_lines.append(
+        "|--------------|------|-------------|---------------|----------------------|----------------------|"
+    )
+    for r in rows[:50]:  # limit output
+        md_lines.append(
+            f"| {r['conversation_title']} | {r['role']} | {r['message_id']} | {r['message_text'][:40]} | {r['paired_user_message'][:40]} | {r['paired_assistant_suggestion'][:40]} |"
+        )
+    return "\n".join(md_lines)

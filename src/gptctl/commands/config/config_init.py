@@ -1,11 +1,11 @@
 import json
 from pathlib import Path
-from typing import Annotated, Optional
+from typing import Annotated
 import typer
 from rich.console import Console
 from rich.prompt import Prompt
 
-from gptctl.utils.utils import default_config_path
+from gptctl.config import default_config_path
 from gptctl.config import AppConfig
 
 app = typer.Typer()
