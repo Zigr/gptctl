@@ -1,6 +1,6 @@
 # `gptctl`
 
-![Manage your ChatGPT exports](./docs/header.png &#x27;Manage your ChatGPT exports&#x27;)
+![Manage your ChatGPT exports](./docs/header.png 'Manage your ChatGPT exports')
 
 CLI manager to organize(show,list,export,explore) ChatGPT user ***conversations.json***.
 
