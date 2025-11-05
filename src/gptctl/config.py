@@ -117,48 +117,14 @@ class AppConfig:
             and "max_examples" in eff_cfg["format"]
         ):
             eff_cfg["format"]["max_examples"] = args["max_examples"]
+
         if (
             args.get("collapse_threshold") is not None
             and isinstance(eff_cfg, dict)
             and "collapse_threshold" in eff_cfg["format"]
         ):
             eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
-        if (
-            args.get("max_examples") is not None
-            and isinstance(eff_cfg, dict)
-            and "max_examples" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["max_examples"] = args["max_examples"]
-        if (
-            args.get("collapse_threshold") is not None
-            and isinstance(eff_cfg, dict)
-            and "collapse_threshold" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
-        if (
-            args.get("max_examples") is not None
-            and isinstance(eff_cfg, dict)
-            and "max_examples" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["max_examples"] = args["max_examples"]
-        if (
-            args.get("collapse_threshold") is not None
-            and isinstance(eff_cfg, dict)
-            and "collapse_threshold" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
-        if (
-            args.get("max_examples") is not None
-            and isinstance(eff_cfg, dict)
-            and "max_examples" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["max_examples"] = args["max_examples"]
-        if (
-            args.get("collapse_threshold") is not None
-            and isinstance(eff_cfg, dict)
-            and "collapse_threshold" in eff_cfg["format"]
-        ):
-            eff_cfg["format"]["collapse_threshold"] = args["collapse_threshold"]
+        
             # Handle noisy fields
         if (
             args.get("clear_noisy_fields") is not None
@@ -166,6 +132,7 @@ class AppConfig:
             and "noisy_fields" in eff_cfg["format"]
         ):
             eff_cfg["format"]["noisy_fields"] = []
+
         if (
             args.get("noisy_fields") is not None
             and isinstance(eff_cfg, dict)
