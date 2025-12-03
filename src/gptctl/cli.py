@@ -132,7 +132,7 @@ def main_callback(
     output_dir: Annotated[
         str,
         typer.Option(help="Path to output directory", rich_help_panel="Path OPTIONS"),
-    ] = DEFAULT_CONFIG["output_dir"],
+    ] = "",
     output: Annotated[
         str,
         typer.Option(
@@ -141,7 +141,7 @@ def main_callback(
             help="Path to output file. Depends on the command used.",
             rich_help_panel="Path OPTIONS",
         ),
-    ] = DEFAULT_CONFIG["output_file"],
+    ] = "",
     config: Annotated[
         Path,
         typer.Option(
@@ -192,10 +192,6 @@ def main_callback(
 ):
     """
     Global  [OPTIONS] for ChatGpt Conversation Control. Use --help on subcommands for more details of another COMMAND [ARGS]..."""
-
-    if verbose >= 1:
-        console.print(f"Verbose level set to [bold green]{verbose}[/bold green]")
-        console.print(f"Reading conversations from {input}...")
 
     if verbose == 2:
         console.print("Debug output enabled.")
